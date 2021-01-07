@@ -1,25 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Home from "./pages/Home";
+import Contact from "./pages/Contact";
+import Post from "./pages/Post";
+
+export default class App extends Component {
+  render() {
+    return (
+      <Router>
+        <ul>
+          <li><NavLink exact to="/">Accueil</NavLink></li>
+          <li><NavLink to="/mes-articles-de-la-mort">Post</NavLink></li>
+          <li><NavLink to="/me-contacter">Contact</NavLink></li>
+        </ul>
+
+        <Route exact path="/" component={Home} />
+        {/* <Route path="/mes-articles-de-la-mort" component={Blog} /> */}
+
+        <Route path="/mes-articles-de-la-mort/:bachibouzouk" component={Post} />
+
+        <Route path="/me-contacter" component={Contact} />
+      </Router>
+    )
+  }
 }
-
-export default App;
